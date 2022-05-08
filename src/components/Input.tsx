@@ -11,7 +11,7 @@ interface InputProps {
 const Input = ({ label, value, onChangeText }: InputProps) => {
   return (
     <View style={tw.style('my-2')}>
-      <Text style={tw.style('text-base mr-2')}>{label}</Text>
+      <Text style={tw.style('font-sans text-base mr-2')}>{label}</Text>
       <TextInput
         style={tw.style('bg-white rounded-md h-10 w-full p-1 my-1')}
         value={value}

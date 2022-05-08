@@ -28,7 +28,7 @@ const Home = () => {
   }, [data, filterOptions])
 
   return (
-    <View style={tw.style('flex-1 p-4')}>
+    <View style={tw.style('flex-1')}>
       <Filter value={filterOptions} onValueChange={setFilterOptions} />
       <FlatList
         data={filteredData}

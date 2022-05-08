@@ -11,7 +11,7 @@ interface FilterProps {
 const Filter = ({ value, onValueChange }: FilterProps) => {
   const { criteria, active, inactive } = value
   return (
-    <>
+    <View style={tw.style('p-4')}>
       <Input
         label='Search'
         value={criteria}
@@ -47,7 +47,7 @@ const Filter = ({ value, onValueChange }: FilterProps) => {
           }
         />
       </View>
-    </>
+    </View>
   )
 }
 

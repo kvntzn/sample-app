@@ -13,7 +13,7 @@ interface SwitchProps {
 const CheckBox = ({ label, value, onValueChange }: SwitchProps) => {
   return (
     <View style={tw.style('flex-row items-center my-2')}>
-      <Text style={tw.style('text-base mr-2')}>{label}</Text>
+      <Text style={tw.style('font-sans text-sm mr-2')}>{label}</Text>
       <Checkbox
         value={value}
         onValueChange={onValueChange}

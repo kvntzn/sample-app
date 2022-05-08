@@ -9,7 +9,7 @@ interface CardProps {
 
 const Card = ({ item }: CardProps) => {
   return (
-    <View style={tw.style('w-full h-51 rounded-lg shadow-lg my-1')}>
+    <View style={tw.style('w-full h-51 rounded-lg shadow-lg m-2 my-0')}>
       <ImageBackground
         style={tw.style(
           'w-full h-full rounded-lg overflow-hidden justify-evenly p-2'
