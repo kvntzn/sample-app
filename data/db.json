@@ -3,15 +3,22 @@
     {
       "id": 1,
       "name": "Max",
-      "description": "funny dog",
-      "category": "belgian malinois",
+      "description": "funny belgian malinois dog",
+      "category": "guard",
       "isActive": false
     },
     {
       "id": 2,
       "name": "Pochie",
       "description": "old dog",
-      "category": "askal",
+      "category": "family",
+      "isActive": false
+    },
+      {
+      "id": 3,
+      "name": "Pom",
+      "description": "cute pomeranian dog",
+      "category": "family",
       "isActive": false
     }
   ]

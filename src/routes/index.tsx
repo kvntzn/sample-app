@@ -6,7 +6,7 @@ const RootStack = createStackNavigator()
 const Routes = () => {
   return (
     <NavigationContainer>
-      <RootStack.Navigator screenOptions={{ headerShown: false }}>
+      <RootStack.Navigator>
         <RootStack.Screen name='Home' component={HomeScreen} />
       </RootStack.Navigator>
     </NavigationContainer>
