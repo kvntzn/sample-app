@@ -15,9 +15,8 @@ const updateDog = async (id: number, item: EditableDog) => {
   return response.data as Dog
 }
 
-const deleteDog = async (id: number, item: EditableDog) => {
+const deleteDog = async (id: number) => {
   const response = await instance.delete(`/dogs/${id}`)
-  console.log('deelte', response.data)
   return response.data
 }
 

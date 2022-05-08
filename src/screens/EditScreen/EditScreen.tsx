@@ -1,5 +1,5 @@
-import { StyleSheet, Switch, Text, View } from 'react-native'
-import React, { useState } from 'react'
+import { Alert, StyleSheet, Switch, Text, View } from 'react-native'
+import React, { useLayoutEffect, useState } from 'react'
 import tw from '../../lib/tailwind'
 import colors from '../../constants/colors'
 import { Button, Input } from '../../components'
@@ -10,6 +10,8 @@ import { StackScreenProps } from '@react-navigation/stack'
 import { RootNavigatorParamList } from '../../routes/type'
 import useEditDog from '../../hooks/useEditDog'
 import useGetDog from '../../hooks/useGetDog'
+import { Ionicons } from '@expo/vector-icons'
+import useDeleteDogs from '../../hooks/useDeleteDogs'
 
 type EditScreenProps = StackScreenProps<RootNavigatorParamList, 'Edit'>
 
@@ -29,6 +31,7 @@ const EditScreen = ({ navigation, route }: EditScreenProps) => {
   })
   const { mutate: create, isLoading: isCreating } = useCreateDog()
   const { mutate: edit, isLoading: isUpdating } = useEditDog()
+  const { mutate: deleteDog } = useDeleteDogs()
 
   const { data: categories } = useGetCategories()
 
@@ -68,6 +71,40 @@ const EditScreen = ({ navigation, route }: EditScreenProps) => {
     }
   }
 
+  const onDelete = () => {
+    if (!id) return
+
+    Alert.alert('Warning', 'Are you sure you want to delete this ?', [
+      {
+        text: 'Delete',
+        style: 'destructive',
+        onPress: () =>
+          deleteDog([id], {
+            onSettled: () => {
+              navigation.goBack()
+            },
+          }),
+      },
+      { text: 'Cancel', style: 'cancel' },
+    ])
+  }
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: id ? 'Edit' : 'Create',
+      headerRight: () => {
+        return id ? (
+          <Ionicons
+            name='trash'
+            size={26}
+            color={colors.red}
+            onPress={onDelete}
+          />
+        ) : null
+      },
+    })
+  }, [navigation])
+
   return (
     <View style={tw.style('flex-1 p-4')}>
       <Input label='Name' value={name} onChangeText={setName} />
@@ -81,7 +118,7 @@ const EditScreen = ({ navigation, route }: EditScreenProps) => {
         onValueChange={(itemValue, itemIndex) => setCategory(itemValue)}
       >
         {categories?.map((d) => (
-          <Picker.Item label={d} value={d} />
+          <Picker.Item key={d} label={d} value={d} />
         ))}
       </Picker>
       <View style={tw.style('flex-row justify-between mb-10')}>

@@ -26,7 +26,7 @@ const Card = ({ item, onPress }: CardProps) => {
         )}
         imageStyle={tw.style('w-full h-full rounded-lg')}
         resizeMode='cover'
-        source={{ uri: 'https://picsum.photos/200/300' }}
+        source={{ uri: `https://picsum.photos/200/100` }}
       >
         <View style={tw.style('flex-row w-full items-center justify-between')}>
           <Text

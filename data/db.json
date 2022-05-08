@@ -1,13 +1,6 @@
 {
   "dogs": [
     {
-      "name": "Max",
-      "description": "funny belgian malinois dog",
-      "category": "non-sporting",
-      "isActive": true,
-      "id": 1
-    },
-    {
       "id": 2,
       "name": "Pochie",
       "description": "old dog",
@@ -27,13 +20,6 @@
       "category": "terrier",
       "isActive": true,
       "id": 4
-    },
-    {
-      "name": "New test ",
-      "description": "Asdasd",
-      "category": "terrier",
-      "isActive": false,
-      "id": 5
     },
     {
       "name": "Max",
