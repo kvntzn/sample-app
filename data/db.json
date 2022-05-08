@@ -5,7 +5,7 @@
       "name": "Max",
       "description": "funny belgian malinois dog",
       "category": "guard",
-      "isActive": false
+      "isActive": true
     },
     {
       "id": 2,

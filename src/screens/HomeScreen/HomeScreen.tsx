@@ -1,15 +1,21 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native'
+import { FlatList, Text, View } from 'react-native'
 import React, { useMemo, useState } from 'react'
 import tw from '../../lib/tailwind'
 import useGetDogs from '../../hooks/useGetDogs'
 import { Dog } from '../../models/Dog'
-import Card from '../../components/Card'
-import Input from '../../components/Input'
 import { filterDogs } from '../../lib/filter'
+import { Card, Input, CheckBox } from '../../components'
+import Filter from './components/Filter'
+import { FilterOptions } from '../../models/FilterOptions'
 
 const Home = () => {
   const { data } = useGetDogs()
-  const [searchCriteria, setSearchCriteria] = useState('')
+
+  const [filterOptions, setFilterOptions] = useState<FilterOptions>({
+    criteria: '',
+    active: false,
+    inactive: false,
+  })
 
   const renderItem = ({ item }: { item: Dog }) => {
     return <Card item={item} />
@@ -18,16 +24,12 @@ const Home = () => {
   const filteredData = useMemo(() => {
     if (!data) return []
 
-    return filterDogs(searchCriteria, data)
-  }, [data, searchCriteria])
+    return filterOptions ? filterDogs(filterOptions, data) : data
+  }, [data, filterOptions])
 
   return (
     <View style={tw.style('flex-1 p-4')}>
-      <Input
-        label='Search'
-        value={searchCriteria}
-        onChangeText={setSearchCriteria}
-      />
+      <Filter value={filterOptions} onValueChange={setFilterOptions} />
       <FlatList
         data={filteredData}
         keyExtractor={(item) => item.id}

@@ -3,11 +3,11 @@ import React from 'react'
 import tw from '../lib/tailwind'
 import { Dog } from '../models/Dog'
 
-interface ICardProps {
+interface CardProps {
   item: Dog
 }
 
-const Card = ({ item }: ICardProps) => {
+const Card = ({ item }: CardProps) => {
   return (
     <View style={tw.style('w-full h-51 rounded-lg shadow-lg my-1')}>
       <ImageBackground
