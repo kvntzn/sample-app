@@ -5,16 +5,34 @@ import colors from '../../constants/colors'
 import { Button, Input } from '../../components'
 import { Picker } from '@react-native-picker/picker'
 import useGetCategories from '../../hooks/useGetCategories'
+import useCreateDog from '../../hooks/useCreateDog'
+import { StackScreenProps } from '@react-navigation/stack'
+import { RootNavigatorParamList } from '../../routes/type'
 
-const EditScreen = () => {
+type EditScreenProps = StackScreenProps<RootNavigatorParamList, 'Edit'>
+
+const EditScreen = ({ navigation, route }: EditScreenProps) => {
   const { data } = useGetCategories()
+  const { mutate: create, isLoading: isCreating } = useCreateDog()
 
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
   const [category, setCategory] = useState('')
   const [isActive, setIsActive] = useState(false)
 
-  const onSubmit = () => {}
+  const onSubmit = () => {
+    create(
+      {
+        name,
+        description,
+        category,
+        isActive,
+      },
+      {
+        onSuccess: () => navigation.goBack(),
+      }
+    )
+  }
 
   return (
     <View style={tw.style('flex-1 p-4')}>
@@ -45,7 +63,7 @@ const EditScreen = () => {
         />
       </View>
 
-      <Button onPress={onSubmit} loading={false} title='Submit' />
+      <Button onPress={onSubmit} loading={isCreating} title='Submit' />
     </View>
   )
 }

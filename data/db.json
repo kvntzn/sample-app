@@ -20,6 +20,20 @@
       "description": "cute pomeranian dog",
       "category": "toy",
       "isActive": false
+    },
+    {
+      "name": "Doggo",
+      "description": "Sample",
+      "category": "terrier",
+      "isActive": true,
+      "id": 4
+    },
+    {
+      "name": "New test ",
+      "description": "Asdasd",
+      "category": "terrier",
+      "isActive": false,
+      "id": 5
     }
   ]
 }
