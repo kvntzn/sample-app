@@ -37,10 +37,17 @@ const EditScreen = ({ navigation, route }: EditScreenProps) => {
 
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
-  const [category, setCategory] = useState('')
+  const [category, setCategory] = useState('toy')
   const [isActive, setIsActive] = useState(false)
+  const [error, setError] = useState(false)
 
   const onSubmit = () => {
+    setError(false)
+    if (!name || !description) {
+      setError(true)
+      return
+    }
+
     if (id) {
       edit(
         {
@@ -134,6 +141,11 @@ const EditScreen = ({ navigation, route }: EditScreenProps) => {
         />
       </View>
 
+      {error && (
+        <Text style={tw.style('font-sans text-red text-base self-center my-2')}>
+          Name and Description is required.
+        </Text>
+      )}
       <Button
         onPress={onSubmit}
         loading={isCreating || isUpdating}
