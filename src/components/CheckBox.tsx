@@ -18,6 +18,7 @@ const CheckBox = ({ label, value, onValueChange }: SwitchProps) => {
         value={value}
         onValueChange={onValueChange}
         color={value ? colors.bronze.base : undefined}
+        style={{ backgroundColor: colors.white}}
       />
     </View>
   )

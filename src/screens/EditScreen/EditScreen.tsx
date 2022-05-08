@@ -12,6 +12,7 @@ import useEditDog from '../../hooks/useEditDog'
 import useGetDog from '../../hooks/useGetDog'
 import { Ionicons } from '@expo/vector-icons'
 import useDeleteDogs from '../../hooks/useDeleteDogs'
+import { Platform } from 'react-native'
 
 type EditScreenProps = StackScreenProps<RootNavigatorParamList, 'Edit'>
 
@@ -81,7 +82,20 @@ const EditScreen = ({ navigation, route }: EditScreenProps) => {
   const onDelete = () => {
     if (!id) return
 
-    Alert.alert('Warning', 'Are you sure you want to delete this ?', [
+    const title = 'Warning'
+    const message = 'Are you sure you want to delete this ?'
+    if (Platform.OS === 'web') {
+      const result = window.confirm(`${title}\n${message}`)
+      if (result) {
+        deleteDog([id], {
+          onSettled: () => {
+            navigation.goBack()
+          },
+        })
+      }
+    }
+
+    Alert.alert(title, message, [
       {
         text: 'Delete',
         style: 'destructive',

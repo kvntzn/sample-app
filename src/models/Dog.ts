@@ -4,6 +4,7 @@ export interface Dog {
   description: string
   category: string
   isActive: boolean
+  isChecked?: boolean
 }
 
 type EditableDogField = 'name' | 'description' | 'category' | 'isActive'

@@ -8,6 +8,7 @@ import Ionicons from '@expo/vector-icons/Ionicons'
 
 import HomeScreen from '../screens/HomeScreen'
 import EditScreen from '../screens/EditScreen'
+import colors from '../constants/colors'
 
 const RootStack = createStackNavigator<RootNavigatorParamList>()
 const Routes = () => {
@@ -18,19 +19,7 @@ const Routes = () => {
           headerTitleStyle: tw.style('font-serif-bold text-lg'),
         }}
       >
-        <RootStack.Screen
-          name='Home'
-          component={HomeScreen}
-          options={({ navigation, route }) => ({
-            headerRight: () => (
-              <Ionicons
-                name='add'
-                size={26}
-                onPress={() => navigation.navigate('Edit')}
-              />
-            ),
-          })}
-        />
+        <RootStack.Screen name='Home' component={HomeScreen} />
 
         <RootStack.Screen name='Edit' component={EditScreen} />
       </RootStack.Navigator>
