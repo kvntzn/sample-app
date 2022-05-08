@@ -32,7 +32,7 @@ const Home = () => {
       <Filter value={filterOptions} onValueChange={setFilterOptions} />
       <FlatList
         data={filteredData}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.id.toString()}
         renderItem={renderItem}
       />
     </View>
