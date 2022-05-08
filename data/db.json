@@ -1,11 +1,11 @@
 {
   "dogs": [
     {
-      "id": 1,
       "name": "Max",
       "description": "funny belgian malinois dog",
-      "category": "working",
-      "isActive": true
+      "category": "non-sporting",
+      "isActive": true,
+      "id": 1
     },
     {
       "id": 2,
@@ -34,6 +34,13 @@
       "category": "terrier",
       "isActive": false,
       "id": 5
+    },
+    {
+      "name": "Max",
+      "description": "funny belgian malinois dog",
+      "category": "toy",
+      "isActive": true,
+      "id": 6
     }
   ]
 }

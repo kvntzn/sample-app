@@ -8,12 +8,29 @@ import useGetCategories from '../../hooks/useGetCategories'
 import useCreateDog from '../../hooks/useCreateDog'
 import { StackScreenProps } from '@react-navigation/stack'
 import { RootNavigatorParamList } from '../../routes/type'
+import useEditDog from '../../hooks/useEditDog'
+import useGetDog from '../../hooks/useGetDog'
 
 type EditScreenProps = StackScreenProps<RootNavigatorParamList, 'Edit'>
 
 const EditScreen = ({ navigation, route }: EditScreenProps) => {
-  const { data } = useGetCategories()
+  const id = route?.params?.id
+
+  useGetDog(id, {
+    enabled: !!id,
+    onSuccess: (data) => {
+      if (data) {
+        setName(data.name)
+        setDescription(data.description)
+        setCategory(data.category)
+        setIsActive(data.isActive)
+      }
+    },
+  })
   const { mutate: create, isLoading: isCreating } = useCreateDog()
+  const { mutate: edit, isLoading: isUpdating } = useEditDog()
+
+  const { data: categories } = useGetCategories()
 
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
@@ -21,17 +38,34 @@ const EditScreen = ({ navigation, route }: EditScreenProps) => {
   const [isActive, setIsActive] = useState(false)
 
   const onSubmit = () => {
-    create(
-      {
-        name,
-        description,
-        category,
-        isActive,
-      },
-      {
-        onSuccess: () => navigation.goBack(),
-      }
-    )
+    if (id) {
+      edit(
+        {
+          id,
+          fieldToUpdate: {
+            name,
+            description,
+            category,
+            isActive,
+          },
+        },
+        {
+          onSuccess: () => navigation.goBack(),
+        }
+      )
+    } else {
+      create(
+        {
+          name,
+          description,
+          category,
+          isActive,
+        },
+        {
+          onSuccess: () => navigation.goBack(),
+        }
+      )
+    }
   }
 
   return (
@@ -46,7 +80,7 @@ const EditScreen = ({ navigation, route }: EditScreenProps) => {
         selectedValue={category}
         onValueChange={(itemValue, itemIndex) => setCategory(itemValue)}
       >
-        {data?.map((d) => (
+        {categories?.map((d) => (
           <Picker.Item label={d} value={d} />
         ))}
       </Picker>
@@ -63,7 +97,11 @@ const EditScreen = ({ navigation, route }: EditScreenProps) => {
         />
       </View>
 
-      <Button onPress={onSubmit} loading={isCreating} title='Submit' />
+      <Button
+        onPress={onSubmit}
+        loading={isCreating || isUpdating}
+        title='Submit'
+      />
     </View>
   )
 }

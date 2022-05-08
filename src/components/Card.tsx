@@ -1,15 +1,25 @@
-import { ImageBackground, StyleSheet, Text, View } from 'react-native'
+import {
+  ImageBackground,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native'
 import React from 'react'
 import tw from '../lib/tailwind'
 import { Dog } from '../models/Dog'
 
 interface CardProps {
   item: Dog
+  onPress: () => void
 }
 
-const Card = ({ item }: CardProps) => {
+const Card = ({ item, onPress }: CardProps) => {
   return (
-    <View style={tw.style('w-full h-51 rounded-lg shadow-lg m-2 my-0')}>
+    <Pressable
+      style={tw.style('w-full h-51 rounded-lg shadow-lg m-2 my-0')}
+      onPress={onPress}
+    >
       <ImageBackground
         style={tw.style(
           'w-full h-full rounded-lg overflow-hidden justify-evenly p-2'
@@ -40,7 +50,7 @@ const Card = ({ item }: CardProps) => {
           </View>
         </View>
       </ImageBackground>
-    </View>
+    </Pressable>
   )
 }
 
