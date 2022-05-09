@@ -58,6 +58,7 @@ const EditScreen = ({ navigation, route }: EditScreenProps) => {
             description,
             category,
             isActive,
+            date: new Date().toISOString(),
           },
         },
         {
@@ -71,6 +72,7 @@ const EditScreen = ({ navigation, route }: EditScreenProps) => {
           description,
           category,
           isActive,
+          date: new Date().toISOString(),
         },
         {
           onSuccess: () => navigation.goBack(),

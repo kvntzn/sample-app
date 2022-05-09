@@ -30,6 +30,7 @@ const Home = ({ navigation }: HomeScreenProps) => {
     refetch,
   } = useGetDogs({
     onSuccess: (data) => setDogs(data),
+    select: (data) => data.sort((a, b) => (a.date > b.date ? -1 : 1)),
   })
   const { mutate: deleteDogs } = useDeleteDogs()
 

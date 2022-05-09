@@ -1,32 +1,28 @@
 {
   "dogs": [
     {
-      "name": "Zzzzz",
-      "description": "Asdasdas",
+      "name": "Neww1",
+      "description": "Asdasdasd",
       "category": "toy",
       "isActive": false,
-      "id": 8
+      "date": "2022-05-09T04:51:36.557Z",
+      "id": 1
     },
     {
-      "name": "Zxcxc",
-      "description": "Asdasd",
-      "category": "toy",
-      "isActive": false,
-      "id": 9
-    },
-    {
-      "name": "Zxczxc",
-      "description": "Asdasd",
-      "category": "toy",
+      "name": "New 2",
+      "description": "Asdasdasd",
+      "category": "terrier",
       "isActive": true,
-      "id": 10
+      "date": "2022-05-09T04:56:37.763Z",
+      "id": 2
     },
     {
-      "name": "test123",
-      "description": "asdasd",
-      "category": "toy",
+      "name": "New 3",
+      "description": "Asdasdasd",
+      "category": "terrier",
       "isActive": false,
-      "id": 11
+      "date": "2022-05-09T04:55:07.678Z",
+      "id": 3
     }
   ]
 }
