@@ -3,10 +3,10 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
 } from 'react-native'
 import React from 'react'
 import tw from '../lib/tailwind'
+import { BUTTON } from '../constants/test_constant'
 
 interface ButtonProps {
   title: string
@@ -17,6 +17,7 @@ interface ButtonProps {
 const Button = ({ title, onPress, loading }: ButtonProps) => {
   return (
     <TouchableOpacity
+      testID={BUTTON}
       style={tw.style(
         'h-10 w-full bg-bronze rounded-lg items-center justify-center'
       )}
